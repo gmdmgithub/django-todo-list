@@ -1,0 +1,28 @@
+{% extends "tasks/index.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<h3>My task list</h3>
+
+    <form action="/todo/" method="POST">
+        
+       {% csrf_token %}
+
+        {{ form.title }}
+        
+        {{form.errors}}
+        
+        <input type="submit" value="Create task">
+
+    </form>
+
+    {% for t in tasks %}
+        <div class="list">
+        <a href=" {% url 'update' t.id %} ">Update</a>
+            <p>{{ t }}</p>
+        </div>
+    {% endfor %}
+
+{% endblock  %}

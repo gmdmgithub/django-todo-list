@@ -1,0 +1,22 @@
+{% extends "tasks/index.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<h2>Update task here</h2>
+
+<form action="/todo/" method="POST">
+        
+       {% csrf_token %}
+
+        {{ form.title }}
+        
+        {{form.errors}}
+
+        <input type="submit" value="Update task">
+
+    </form>
+
+
+{% endblock  %}
