@@ -4,18 +4,27 @@
 
 {% block content %}
 
-<h2>Update task here</h2>
+<h2>Update task here {{ form.id }}</h2>
 
-<form action="/todo/" method="POST">
-        
+<form action="/todo/update/{{ t_id }}/" method="POST">
+    
        {% csrf_token %}
 
-        {{ form.title }}
-        
-        {{form.errors}}
+        {% for field in form.visible_fields %}
+        <div class="form-row">
+            {{ field.label_tag }}
+            {{ field.errors }}
+            {{ field }}
+            {{ field.help_text }}
+        </diV>
 
-        <input type="submit" value="Update task">
+        {% endfor %}
 
+        <div class="form-bottom"></div>
+
+        <a class="btn btn-secondary btn-block" href="{% url 'index' %}">Cancel</a>
+        <input class="btn btn-primary" type="submit" value="Update task">
+    
     </form>
 
 

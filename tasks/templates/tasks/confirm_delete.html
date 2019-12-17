@@ -1,0 +1,17 @@
+{% extends "tasks/index.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<h3>Are your sure you want to delete task: {{task}}</h3>
+
+<a class="btn btn-outline-warning" href="{% url 'index' %}">Cancel</a>
+    <form method="POST" action="">
+        {% csrf_token %}
+
+        
+        <input type="submit" value="Confirm" />
+    </form>
+
+{% endblock content %}

@@ -4,25 +4,33 @@
 
 {% block content %}
 
-<h3>My task list</h3>
 
-    <form action="/todo/" method="POST">
-        
-       {% csrf_token %}
+    <h3>My task list</h3>
 
-        {{ form.title }}
-        
-        {{form.errors}}
-        
-        <input type="submit" value="Create task">
+        <form action="/todo/" method="POST">
+            
+        {% csrf_token %}
 
-    </form>
+            {{ form.title }}
+            
+            {{form.errors}}
+            
+            <input lass="btn btn-info" type="submit" value="Create task">
 
-    {% for t in tasks %}
-        <div class="list">
-        <a href=" {% url 'update' t.id %} ">Update</a>
-            <p>{{ t }}</p>
+        </form>
+        <div class="todo-list">
+        {% for t in tasks %}
+            <div class="item-row">
+            <a class="btn btn-sm btn-info" href=" {% url 'update' t.id %} ">Update</a>
+            <a class="btn btn-sm btn-danger" href=" {% url 'delete' t.id %} ">Delete</a>
+            {% if t.completed == True %}
+                <p><strike>{{ t }}</strike></p>
+            {% else %}
+                <p><span>{{ t }}</span></p>
+            {% endif %}
+                
+            </div>
+        {% endfor %}
         </div>
-    {% endfor %}
 
-{% endblock  %}
+    {% endblock  %}
