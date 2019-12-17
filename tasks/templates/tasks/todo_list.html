@@ -15,20 +15,22 @@
             
             {{form.errors}}
             
-            <input lass="btn btn-info" type="submit" value="Create task">
+            <input class="btn btn-info" type="submit" value="Create task">
 
         </form>
         <div class="todo-list">
         {% for t in tasks %}
             <div class="item-row">
-            <a class="btn btn-sm btn-info" href=" {% url 'update' t.id %} ">Update</a>
-            <a class="btn btn-sm btn-danger" href=" {% url 'delete' t.id %} ">Delete</a>
+    
             {% if t.completed == True %}
                 <p><strike>{{ t }}</strike></p>
             {% else %}
                 <p><span>{{ t }}</span></p>
             {% endif %}
-                
+
+            <a class="btn btn-sm btn-info" href=" {% url 'update' t.id %} ">Update</a>
+            <a class="btn btn-sm btn-danger" href=" {% url 'delete' t.id %} ">Delete</a>
+
             </div>
         {% endfor %}
         </div>
